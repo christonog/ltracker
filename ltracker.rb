@@ -2,11 +2,12 @@ require 'rubygems'
 require 'sinatra'
 
 get '/' do
- "enter the tracking number in the url:
-  ltracker.heroku.com/tracking/(your tracking number)"
+
+  erb :home
+
 end
 
-get '/tracking/:number' do
+post '/' do
   # UPS code
   if params[:number] =~ /\A1ZW/
    redirect "http://wwwapps.ups.com/WebTracking/processInputRequest?sort_by=status&tracknums_displayed=1&TypeOfInquiryNumber=T&loc=en_US&InquiryNumber1=#{params[:number]}&track.x=0&track.y=0"
