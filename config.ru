@@ -1,2 +1,2 @@
-require 'ltracker'
+require './ltracker'
 run Sinatra::Application
