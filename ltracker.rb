@@ -2,10 +2,12 @@ require 'rubygems'
 require 'sinatra'
 
 get '/' do
-
+  @title = "Track your package"
   erb :home
 
 end
+
+# Need to add USPS, Canadian Post, and other shipping options
 
 post '/' do
   # UPS code
@@ -29,4 +31,10 @@ post '/' do
   else
     "not a valid tracking number. Try again."
   end
+end
+
+get '/about' do
+
+  erb :about
+
 end
