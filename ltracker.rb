@@ -34,7 +34,8 @@ post '/' do
 end
 
 get '/about' do
-
+  
+  @title = "About this App"
   erb :about
 
 end
