@@ -7,7 +7,7 @@ get '/' do
 
 end
 
-# Need to add USPS, Canadian Post, and other shipping options
+# Need to add USPS, Canadian Post, and other shipping options (DHL AU?)
 
 post '/' do
   # UPS code
@@ -16,7 +16,8 @@ post '/' do
   # Australian Air code
   elsif params[:number] =~ /\AUJZ/
     redirect "https://trackandtrace.aae.com.au/#{params[:number]}"
-  elsif params[:number] =~ /\d{12}/
+  elsif params[:number] =~ /(\d{12}|\d{15})/ #if the number is 12 or 15 digits
+    #digits of 20 or 22 are rare, will fix this when they come up
     #US Fedex
     redirect "http://www.fedex.com/Tracking?language=english&cntry_code=us&tracknumbers=#{params[:number]}"
   elsif params[:number] =~ /\A00/
@@ -25,7 +26,7 @@ post '/' do
   elsif params[:number] =~ /\d{10}/
     #DPD
     redirect "http://www.dpd.co.uk/tracking/trackingSearch.do?search.searchType=0&search.parcelNumber=#{params[:number]}&search.searchScope="
-  elsif params[:number] =~ /\A11/
+  elsif params[:number] =~ /\A11/ #if the number is 11 alphabet characters
     #DHL
     redirect "http://track.dhl-usa.com/TrackByNbr.asp?ShipmentNumber=#{params[:number]}"
   else
@@ -38,4 +39,8 @@ get '/about' do
   @title = "About this App"
   erb :about
 
+end
+
+not_found do
+  halt 404, "Sorry, page not found."
 end
