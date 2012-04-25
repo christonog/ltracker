@@ -30,7 +30,7 @@ post '/' do
     #DHL
     redirect "http://track.dhl-usa.com/TrackByNbr.asp?ShipmentNumber=#{params[:number]}"
   else
-    "not a valid tracking number. Try again."
+    erb :try_again
   end
 end
 
