@@ -28,6 +28,15 @@ describe "The ltracker application" do
 			post '/', params={number: '913092675068220'}
 			last_response.status.should == 302 #302 is a redirect, which is what the code is doing
 		end
+
+
+		#need to test for the other shipping method
+
+		it "redirects to canada post website with a canada post tracking number" do
+			post 'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', params={id: '7310061100142246'}
+			last_response.should be_ok
+		end
+
 	end
 
 	it "should get 404 page when going to invalid url" do
