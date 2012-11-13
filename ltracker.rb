@@ -1,8 +1,13 @@
 
 require 'sinatra'
 
+# removes leading and trailing whitespace of tracking number
+def sanitized(number)
+  number.strip
+end
+
 def ups_redirect_url(match) 
-  redirect "http://wwwapps.ups.com/WebTracking/processInputRequest?sort_by=status&tracknums_displayed=1&TypeOfInquiryNumber=T&loc=en_US&InquiryNumber1=#{match}&track.x=0&track.y=0"
+  redirect "http://wwwapps.ups.com/WebTracking/processInputRequest?sort_by=status&tracknums_displayed=1&TypeOfInquiryNumber=T&loc=en_US&InquiryNumber1=#{sanitized(match)}&track.x=0&track.y=0"
 end
 
 def australian_air_redirect_url(match)
