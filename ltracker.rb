@@ -83,8 +83,3 @@ end
 not_found do
   halt 404, "Sorry, page not found."
 end
-
-# uri = URI.parse("http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber")
-# params[:number] = '7310061100142246'
-# response = Net::HTTP.post_form(uri, {"id" => "7310061100142246"})
-# post 'http://www.canadapost.ca/cpotools/apps/track/personal/findByTrackNumber', params={id: '7310061100142246'}
